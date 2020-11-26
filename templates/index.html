@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% from "delete.html" import build_modal with context %}
+
+{% block extra_head %}
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/main.css') }}" />
+{% endblock %}
+
+{% block first_header %}
+Jack's Finale in DC
+    <small class="text-muted">Seeing how I spend my last few months before moving to LA</small>
+{% endblock %}
+
+{% block first_content %}
+{% include "welcome.html" %}
+
+{% endblock %}
+
+{% block page_header %}
+<h3 class="text-primary mt-2">
+    Check out the list
+</h3>
+{% endblock %}
+
+{% block content %}
+
+<h5 class="text-info mt-2">Still To Do</h5>
+<table class="table table-hover">
+    <thead>
+        <tr class="table-primary">
+            <th scope="col">Activity</th>
+<!--            <th scope="col">When</th>-->
+            <th scope="col">Where</th>
+            <th scope="col">Friends</th>
+            <th scope="col">Notes</th>
+            {% if session.logged_in %}
+            <th scope="col" class="text-right">Admin</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for act in activities if not act.date %}
+        <tr>
+            <th scope="row">{{act.name}}</th>
+<!--            <td>{{act.date}}</td>-->
+            <td>{{act.location}}</td>
+            <td>{{", ".join(act.friends)}}</td>
+            <td>{{act.notes}}</td>
+            {% if session.logged_in %}
+            <td class="text-right">
+                <a class="btn btn-link" href="{{url_for('update', act_id=act.get('_id') )}}" role="button">
+                    <i class="fas fa-edit text-info"></i>
+                </a>
+                <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#delete{{act.get('_id')}}">
+                    <i class="fas fa-trash-alt text-warning"></i>
+                </button>
+                {{ build_modal(act.get('_id'), act.name) }}
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h5 class="text-info">Completed!</h5>
+<table class="table table-hover">
+    <thead>
+        <tr class="table-primary">
+            <th scope="col">Activity</th>
+            <th scope="col">When</th>
+            <th scope="col">Where</th>
+            <th scope="col">Friends</th>
+            <th scope="col">Notes</th>
+            {% if session.logged_in %}
+            <th scope="col" class="text-right">Admin</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for comp_act in completed_activities %}
+        <tr>
+            <th scope="row">{{comp_act.name}}</th>
+            <td>{{comp_act.date}}</td>
+            <td>{{comp_act.location}}</td>
+            <td>{{", ".join(comp_act.friends)}}</td>
+            <td>{{comp_act.notes}}</td>
+            {% if session.logged_in %}
+            <td class="text-right">
+                <a class="btn btn-link" href="{{url_for('update', act_id=comp_act.get('_id') )}}" role="button">
+                    <i class="fas fa-edit text-info"></i>
+                </a>
+                <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#delete{{comp_act.get('_id')}}">
+                    <i class="fas fa-trash-alt text-warning"></i>
+                </button>
+
+
+                {{ build_modal(comp_act.get('_id'), comp_act.name) }}
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

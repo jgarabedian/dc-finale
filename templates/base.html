@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DC Finale</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="noindex">
+    <!--    Bootstrap-->
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+    <!--  Font Awesome  -->
+    <script src="https://kit.fontawesome.com/ae78a69b9b.js" crossorigin="anonymous"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<!--    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150551765-6"></script>-->
+<!--    <script>-->
+<!--      window.dataLayer = window.dataLayer || [];-->
+<!--      function gtag(){dataLayer.push(arguments);}-->
+<!--      gtag('js', new Date());-->
+
+<!--      gtag('config', 'UA-150551765-6');-->
+<!--    </script>-->
+
+    {% block extra_head %}{% endblock %}
+
+</head>
+<body>
+<div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" role="navigation">
+        <a class="navbar-brand" href="/">DC Finale</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                {% if session.logged_in %}
+                  <li class="nav-item"><a class="nav-link" href="{{ url_for('add_activity') }}">Add Activities</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Log out</a></li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Log In</a></li>
+                {% endif %}
+                {% block extra_header %}{% endblock %}
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="container mt-2">
+<h3 class="text-primary">{% block first_header %}{% endblock %}</h3>
+</div>
+<div class="container mt-2 bg-secondary">
+{% block first_content %}
+
+{% endblock %}
+</div>
+<div class="container mt-2">
+    {% block page_header %}
+        <div class="page-header">
+
+          {% block content_title %}{% endblock %}
+        </div>
+      {% endblock %}
+    {% block content %}{% endblock %}
+    <hr>
+    {% block page_nav %}{% endblock %}
+</div>
+<div class="alert alert-secondary mb-0 min-vw-100">
+  <strong>Attention:</strong> This site uses cookies to help with logins :)
+</div>
+
+<!--Bootstrap JS-->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+{% block extra_scripts %}{% endblock %}
+</body>
+</html>

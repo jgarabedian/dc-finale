@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block page_header %}
+
+<a class="btn btn-link btn-lg" href="{{url_for('index')}}" role="button">
+    <i class="fas fa-arrow-left"></i>&nbsp; Go Back
+</a>
+<h3 class="text-primary mt-2">
+    Change it up
+</h3>
+
+{% endblock %}
+
+{% block content %}
+<form action="{{ url_for('update', act_id=activity.get('_id') )}}" method="post">
+<div class="form-group">
+    <label class="col-form-label col-form-label-lg" for="act_name">Name</label>
+    <input class="form-control form-control-lg" type="text" value="{{activity.name}}" id="act_name" name="act_name">
+    <label for="act_category">Category</label>
+      <select class="form-control" id="act_category" name="act_category">
+        <option>Meal</option>
+        <option>Event</option>
+        <option selected>Other</option>
+      </select>
+    <label class="col-form-label" for="act_date">When</label>
+    <input type="text" class="form-control" value="{{activity.date}}" placeholder="yyyy-mm-dd" id="act_date" name="act_date">
+    <small class="form-text text-muted">If you don't know, leave it blank.</small>
+    <label class="col-form-label" for="act_location">Where</label>
+    <input type="text" class="form-control" value="{{activity.location}}" placeholder="My Place" id="act_location" name="act_location">
+    <label class="col-form-label" for="act_address">Address</label>
+    <input type="text" class="form-control" value="{{activity.address}}" placeholder="The Addy" id="act_address" name="act_address">
+    <label class="col-form-label" for="act_friends">Friends</label>
+    <input type="text" class="form-control" value="{{", ".join(activity.friends)}}" placeholder="Friend1, Friend2" id="act_friends" name="act_friends">
+    <label for="act_notes">Any notes for this?</label>
+    <textarea class="form-control" id="act_notes" name="act_notes" rows="2" placeholder="Will be dope.">{{activity.notes}}
+    </textarea>
+    <button type="submit" class="btn btn-primary">Update This</button>
+</div>
+</form>
+{% endblock %}
+

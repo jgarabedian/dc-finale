@@ -1,0 +1,8 @@
+/* Image Carousel */
+
+.img-carousel {
+    max-height: 80vh;
+    max-width: 100%;
+    width: auto;
+    margin: auto;
+}

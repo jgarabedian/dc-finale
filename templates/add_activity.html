@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block page_header %}
+
+<h3 class="text-primary">
+    What is it you still want to do?
+</h3>
+
+{% endblock %}
+
+{% block content %}
+<form action="{{ url_for('add_activity') }}" method="post">
+<div class="form-group">
+    <label class="col-form-label col-form-label-lg" for="act_name">Name</label>
+    <input class="form-control form-control-lg" type="text" placeholder="Activity Name" id="act_name" name="act_name">
+    <label class="col-form-label" for="act_date">When</label>
+    <input type="text" class="form-control" placeholder="yyyy-mm-dd" id="act_date" name="act_date">
+    <small id="whenhelp" class="form-text text-muted">If you don't know, leave it blank.</small>
+    <label class="col-form-label" for="act_location">Where</label>
+    <input type="text" class="form-control" placeholder="My Place" id="act_location" name="act_location">
+    <label class="col-form-label" for="act_address">Address</label>
+    <input type="text" class="form-control" placeholder="The Addy" id="act_address" name="act_address">
+    <label class="col-form-label" for="act_friends">Friends</label>
+    <input type="text" class="form-control" placeholder="Friend1, Friend2" id="act_friends" name="act_friends">
+    <label for="act_notes">Any notes for this?</label>
+    <textarea class="form-control" id="act_notes" name="act_notes" rows="2" placeholder="Will be dope."></textarea>
+    <button type="submit" class="btn btn-primary">Add Activity</button>
+</div>
+</form>
+{% endblock %}
