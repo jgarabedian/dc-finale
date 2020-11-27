@@ -18,9 +18,9 @@
     <input class="form-control form-control-lg" type="text" value="{{activity.name}}" id="act_name" name="act_name">
     <label for="act_category">Category</label>
       <select class="form-control" id="act_category" name="act_category">
-        <option>Meal</option>
-        <option>Event</option>
-        <option selected>Other</option>
+        <option {% if activity.category =='Meal' %} selected="true"  {% endif %}>Meal</option>
+        <option {% if activity.category =='Event' %} selected="true"  {% endif %}>Event</option>
+        <option {% if activity.category =='Other' %} selected="true"  {% endif %}>Other</option>
       </select>
     <label class="col-form-label" for="act_date">When</label>
     <input type="text" class="form-control" value="{{activity.date}}" placeholder="yyyy-mm-dd" id="act_date" name="act_date">
