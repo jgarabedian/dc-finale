@@ -13,6 +13,12 @@
 <div class="form-group">
     <label class="col-form-label col-form-label-lg" for="act_name">Name</label>
     <input class="form-control form-control-lg" type="text" placeholder="Activity Name" id="act_name" name="act_name">
+    <label for="act_category">Category</label>
+      <select class="form-control" id="act_category" name="act_category">
+        <option>Meal</option>
+        <option>Event</option>
+        <option selected>Other</option>
+      </select>
     <label class="col-form-label" for="act_date">When</label>
     <input type="text" class="form-control" placeholder="yyyy-mm-dd" id="act_date" name="act_date">
     <small id="whenhelp" class="form-text text-muted">If you don't know, leave it blank.</small>
