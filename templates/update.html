@@ -23,7 +23,7 @@
         <option {% if activity.category =='Other' %} selected="true"  {% endif %}>Other</option>
       </select>
     <label class="col-form-label" for="act_date">When</label>
-    <input type="text" class="form-control" value="{{activity.date}}" placeholder="yyyy-mm-dd" id="act_date" name="act_date">
+    <input type="date" class="form-control" value="{{activity.date}}" placeholder="yyyy-mm-dd" id="act_date" name="act_date">
     <small class="form-text text-muted">If you don't know, leave it blank.</small>
     <label class="col-form-label" for="act_location">Where</label>
     <input type="text" class="form-control" value="{{activity.location}}" placeholder="My Place" id="act_location" name="act_location">
